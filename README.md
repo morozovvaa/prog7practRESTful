@@ -30,7 +30,7 @@
 
 При первой попытке доступа к конечной точке `GET /api/tasks` **без предоставления учетных данных** (логина/пароля) сервер вернул HTTP-статус **401 Unauthorized**. Это подтверждает, что конфигурация Spring Security успешно защищает API от неавторизованного доступа.
 
-**(401 Unauthorized):**
+**GET /api/tasks (401)**
 <img width="974" height="338" alt="image" src="https://github.com/user-attachments/assets/6e7ea69a-57c6-434f-bc21-c21db6fb04ea" />
 
 
@@ -38,8 +38,9 @@
 
 После предоставления корректных учетных данных (`admin`/`admin123`) через Basic Authentication, доступ был разрешен, и сервер вернул статус **200 OK** с запрошенными данными (списком задач). Это подтверждает успешную аутентификацию и авторизацию для доступа к ресурсу.
 
-**Доказательство (200 OK):**
-[ВСТАВИТЬ СКРИНШОТ 2: GET /api/tasks (200 OK)]
+**GET /api/tasks (200 OK)**
+<img width="974" height="334" alt="image" src="https://github.com/user-attachments/assets/0af1908b-2dfa-4c61-b92f-e8ccc88e8b3d" />
+
 
 ---
 
@@ -50,39 +51,43 @@
 * **Метод:** `POST /api/tasks`
 * **Результат:** Успешный ответ **200 OK** (или 201 Created) с присвоенным `id` и `createdAt`.
 
-**Доказательство:** [СКРИНШОТ 3: POST /api/tasks с ответом, содержащим ID=1]
+<img width="974" height="510" alt="image" src="https://github.com/user-attachments/assets/73519de8-0a86-4585-8659-8f3b45d4e8f8" />
+
 
 ### 3.2. READ (Чтение Задачи по ID)
 
-* **Метод:** `GET /api/tasks/{id}`
+* **Метод:** `GET /api/tasks`
 * **Результат:** Успешный ответ **200 OK** с полными данными задачи.
 
-**Доказательство:** [СКРИНШОТ 4: GET /api/tasks/1 с данными задачи]
+<img width="974" height="518" alt="image" src="https://github.com/user-attachments/assets/654c05b2-5231-45fd-a8a3-b329d043b5b1" />
+
 
 ### 3.3. UPDATE (Обновление Задачи)
 
 * **Метод:** `PUT /api/tasks/{id}`
 * **Результат:** Успешный ответ **200 OK** с обновленным полем `status` или `description`.
 
-**Доказательство:** [СКРИНШОТ 5: PUT /api/tasks/1 с обновленным статусом]
+<img width="974" height="491" alt="image" src="https://github.com/user-attachments/assets/1b46571c-95e4-4101-8581-0cf2bc33ff3b" />
+
 
 ### 3.4. DELETE (Удаление Задачи)
 
 * **Метод:** `DELETE /api/tasks/{id}`
-* **Результат:** Успешный ответ **200 OK** (или 204 No Content).
+* **Результат:** Успешный ответ **200 OK**.
 
-**Доказательство:** [СКРИНШОТ 6: DELETE /api/tasks/1]
+<img width="974" height="368" alt="image" src="https://github.com/user-attachments/assets/852e3a3f-5971-400d-bec2-60cd3e698262" />  
 
-### 3.5. Обработка Ошибок (ResourceNotFoundException)
+<img width="974" height="395" alt="image" src="https://github.com/user-attachments/assets/72ce96a2-8462-435f-8416-0c054c461f96" />
 
-* **Метод:** `GET /api/tasks/{несуществующий id}`
-* **Результат:** Возврат HTTP-статуса **404 Not Found**, что подтверждает корректную работу `ResourceNotFoundException`.
-
-**Доказательство:** [СКРИНШОТ 7: GET /api/tasks/99 с ответом 404]
 
 ---
 
 ## 4. Проверка Базы Данных (H2 Console)
+
+<img width="974" height="494" alt="image" src="https://github.com/user-attachments/assets/ea6069bf-f841-4848-9d98-a189887106ea" />
+
+<img width="974" height="504" alt="image" src="https://github.com/user-attachments/assets/3b751755-119c-430b-a6c8-4c799cc32e02" />
+
 
 Доступ к H2 Console был разрешен в `SecurityConfig`, что позволило проверить сохранение данных на уровне базы.
 
@@ -91,4 +96,5 @@
 
 **Результат:** Запрос подтвердил, что данные, отправленные через API (см. п. 3.1), были корректно сохранены в таблице `TASK` и содержат поля `TITLE`, `DESCRIPTION`, `STATUS` и `CREATED_AT`.
 
-**Доказательство:** [СКРИНШОТ 8: H2 Console с результатами запроса SELECT * FROM TASK]
+<img width="974" height="382" alt="image" src="https://github.com/user-attachments/assets/bc5d31e7-a7c5-4734-b819-b01efefc6ee6" />
+
